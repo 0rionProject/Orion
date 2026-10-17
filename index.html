@@ -329,7 +329,7 @@ h1{font-size:clamp(2.6rem,6vw,5rem);line-height:1.08;letter-spacing:-.05em}
       <section class="panel">
         <h2>🎬 Vidéos pour ton site</h2>
         <div class="option-row">
-          <div class="option-info"><strong>Vidéos intégrées au site</strong><small>10 € par vidéo supplémentaire</small></div>
+          <div class="option-info"><strong>Vidéos intégrées au site</strong><small>2,50 € par vidéo supplémentaire</small></div>
           <span class="price" id="siteVideosCost">0,00 €</span>
           <div class="stepper"><button type="button" data-step="siteVideos" data-delta="-1" aria-label="Retirer une vidéo">−</button><output id="siteVideosValue">0</output><button type="button" data-step="siteVideos" data-delta="1" aria-label="Ajouter une vidéo">+</button></div>
         </div>
@@ -340,13 +340,13 @@ h1{font-size:clamp(2.6rem,6vw,5rem);line-height:1.08;letter-spacing:-.05em}
         <div class="option-row">
           <div class="option-info"><strong>Choisis ton domaine</strong><small>Prix indicatif, à confirmer avant commande</small>
             <select class="domain-select" id="domain">
-              <option value="0">Pas de domaine supplémentaire (.netlify.app) — 0 €</option>
-              <option value="10">.fr — 10 €</option>
-              <option value="15">.com — 15 €</option>
-              <option value="20">.autre extansion - 20 €</option>
+              <option value="5">Pas de domaine supplémentaire (.netlify.app) — 5 €</option>
+              <option value="15">.fr — 15 €</option>
+              <option value="20">.com — 20 €</option>
+              <option value="13">.org — 13 €</option>
             </select>
           </div>
-          <span class="price" id="domainCost">0,00 €</span>
+          <span class="price" id="domainCost">5,00 €</span>
         </div>
       </section>
 
@@ -563,7 +563,7 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 /* Options et calcul du prix */
 const quantities = {photos:0,siteVideos:0,socialVideos:0};
 const limits = {photos:10,siteVideos:5,socialVideos:5};
-const prices = {photos:.50,siteVideos:10,socialVideos:5};
+const prices = {photos:.50,siteVideos:2.5,socialVideos:5};
 const euro = amount => amount.toLocaleString('fr-FR',{
   style:'currency',currency:'EUR'
 });
