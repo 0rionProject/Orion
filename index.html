@@ -352,14 +352,14 @@ h1{font-size:clamp(2.6rem,6vw,5rem);line-height:1.08;letter-spacing:-.05em}
 
       <section class="panel">
         <h2>🎨 Identité et accompagnement</h2>
-        <label class="checkbox-row"><input type="checkbox" id="logo"><span><strong>Création d'un logo</strong><br><small class="muted">Option supplémentaire — 25 €</small></span><strong class="price">25 €</strong></label>
+        <label class="checkbox-row"><input type="checkbox" id="logo"><span><strong>Création d'un logo</strong><br><small class="muted">Option supplémentaire — 10 €</small></span><strong class="price">10 €</strong></label>
         <label class="checkbox-row"><input type="checkbox" id="coaching"><span><strong>Accompagnement d'un conseiller</strong><br><small class="muted">Accompagnement — 25 €</small></span><strong class="price">25 €</strong></label>
       </section>
 
       <section class="panel">
         <h2>📱 Vidéos promotionnelles</h2>
         <div class="option-row">
-          <div class="option-info"><strong>Vidéos pour les réseaux sociaux</strong><small>5 € par vidéo supplémentaire</small></div>
+          <div class="option-info"><strong>Vidéos pour les réseaux sociaux</strong><small>15 € par vidéo supplémentaire</small></div>
           <span class="price" id="socialVideosCost">0,00 €</span>
           <div class="stepper"><button type="button" data-step="socialVideos" data-delta="-1" aria-label="Retirer une vidéo promotionnelle">−</button><output id="socialVideosValue">0</output><button type="button" data-step="socialVideos" data-delta="1" aria-label="Ajouter une vidéo promotionnelle">+</button></div>
         </div>
@@ -407,6 +407,7 @@ h1{font-size:clamp(2.6rem,6vw,5rem);line-height:1.08;letter-spacing:-.05em}
         <div class="field"><label for="firstName">Prénom *</label><input id="firstName" name="firstName" autocomplete="given-name" required></div>
         <div class="field"><label for="lastName">Nom *</label><input id="lastName" name="lastName" autocomplete="family-name" required></div>
         <div class="field"><label for="email">Adresse e-mail *</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="discord">Pseudo Discord (facultatif)</label><input id="discord" name="discord" type="text" autocomplete="off"></div>
         <div class="field"><label for="phone">Téléphone (facultatif)</label><input id="phone" name="phone" type="tel" autocomplete="tel"></div>
         <div class="field full"><label for="country">Pays</label><input id="country" name="country" autocomplete="country-name"></div>
       </div>
@@ -587,7 +588,7 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 /* Options et calcul du prix */
 const quantities = {photos:0,siteVideos:0,socialVideos:0};
 const limits = {photos:10,siteVideos:5,socialVideos:5};
-const prices = {photos:.50,siteVideos:2.5,socialVideos:5};
+const prices = {photos:.50,siteVideos:2.5,socialVideos:15};
 const euro = amount => amount.toLocaleString('fr-FR',{
   style:'currency',currency:'EUR'
 });
@@ -597,7 +598,7 @@ function calculateTotal() {
   const siteVideos = quantities.siteVideos * prices.siteVideos;
   const socialVideos = quantities.socialVideos * prices.socialVideos;
   const domain = Number($('domain').value);
-  const logo = $('logo').checked ? 25 : 0;
+  const logo = $('logo').checked ? 10 : 0;
   const coaching = $('coaching').checked ? 25 : 0;
   const total = photos + siteVideos + socialVideos + domain + logo + coaching;
 
@@ -724,7 +725,7 @@ function showPayment() {
   $('contactSummary').replaceChildren();
   const fullName = `${$('firstName').value.trim()} ${$('lastName').value.trim()}`.trim();
 
-  [['Nom',fullName],['E-mail',$('email').value.trim()]].forEach(([labelText,valueText]) => {
+  [['Nom',fullName],['E-mail',$('email').value.trim()],['Pseudo Discord',$('discord').value.trim()]].forEach(([labelText,valueText]) => {
     const row = document.createElement('div');
     row.className = 'payment-line';
 
